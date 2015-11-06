@@ -4,7 +4,7 @@
 NAMES=$PWD/data/names.txt
 OUTGROUP=Moniliformopses
 
-export WORKDIR=results/`date +%Y-%m-%d`
+export WORKDIR=$PWD/results/`date +%Y-%m-%d`
 
 if [ ! -d $WORKDIR ]; then
     mkdir $WORKDIR
