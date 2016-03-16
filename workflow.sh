@@ -4,7 +4,7 @@
 NAMES=$PWD/data/names.txt
 OUTGROUP=Moniliformopses
 
-export WORKDIR=$PWD/results/`date +%Y-%m-%d`
+export WORKDIR=$PWD/results/2016-03-16 #`date +%Y-%m-%d`
 
 if [ ! -d $WORKDIR ]; then
     mkdir $WORKDIR
@@ -22,15 +22,17 @@ smrt align -w $WORKDIR
 smrt orthologize -w $WORKDIR
 
 export SUPERSMART_BACKBONE_MAX_DISTANCE="0.1"
-export SUPERSMART_BACKBONE_MIN_COVERAGE="3"
-export SUPERSMART_BACKBONE_MAX_COVERAGE="5"
+export SUPERSMART_BACKBONE_MIN_COVERAGE="4"
+export SUPERSMART_BACKBONE_MAX_COVERAGE="6"
 
 smrt bbmerge -w $WORKDIR
 
-export SUPERSMART_EXABAYES_NUMGENS="100000"
-export SUPERSMART_EXABAYES_NUMRUNS="8"
+#export SUPERSMART_EXABAYES_NUMGENS="100000"
+#export SUPERSMART_EXABAYES_NUMRUNS="8"
 
 smrt bbinfer --inferencetool=exabayes -t species.tsv -o backbone.dnd -w $WORKDIR
+exit 0
+
 
 smrt bbreroot -g $OUTGROUP --smooth --ultrametricize -w $WORKDIR
 
